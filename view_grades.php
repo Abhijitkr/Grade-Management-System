@@ -80,7 +80,7 @@ $stmt->close();
                             <td><?php echo $grade['grade']; ?></td>
                             <?php if ($_SESSION['role'] === 'instructor') { ?>
                                 <td>
-                                    <a href="assign_grade.php?id=<?php echo $grade['grade_id']; ?>" class="btn btn-outline-primary btn-sm">Assign Grade</a>
+                                    <a href="assign_grade.php?id=<?php echo $grade['grade_id']; ?>" class="btn btn-outline-primary btn-sm">Update Grade</a>
                                 </td>
                             <?php } ?>
                         </tr>

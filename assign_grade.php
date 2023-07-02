@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Assign Grade</title>
+    <title><?php echo isset($_GET['id']) ? 'Update Grade' : 'Assign Grade'; ?></title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="container">
-        <h1>Assign Grade</h1>
+        <h1><?php echo isset($_GET['id']) ? 'Update Grade' : 'Assign Grade'; ?></h1>
 
         <!-- Display any error messages -->
         <?php if (!empty($error)) { ?>

@@ -67,11 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         body {
             background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         .container {
             max-width: 400px;
-            margin: 0 auto;
             padding: 40px;
             background-color: #fff;
             border-radius: 4px;
