@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Prepare and execute the database query to add the course
         $stmt = $mysqli->prepare('INSERT INTO courses (course_code, course_name) VALUES (?, ?)');
         $stmt->bind_param('ss', $course_code, $course_name);
-        
+
         if ($stmt->execute()) {
             // Redirect to the course list page or show a success message
             header('Location: view_courses.php');
@@ -52,33 +52,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Add Course</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
+            background-color: #f8f9fa; /* Set a consistent background color */
             font-family: Arial, sans-serif;
-            margin: 0;
             padding: 20px;
         }
 
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        .form-container {
+        .container {
             max-width: 400px;
             margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
+        .container h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container .form-group {
             margin-bottom: 15px;
         }
 
-        .form-group label {
+        .container .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
 
-        .form-group input[type="text"] {
+        .container .form-group input[type="text"] {
             width: 100%;
             padding: 8px;
             font-size: 16px;
@@ -86,18 +93,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 4px;
         }
 
-        .form-group .error {
+        .container .form-group .error {
             color: #ff0000;
             margin-top: 5px;
         }
 
-        .form-group .success {
+        .container .form-group .success {
             color: #008000;
             margin-top: 5px;
         }
 
-        .form-group input[type="submit"] {
-            background-color: #4CAF50;
+        .container .form-group input[type="submit"] {
+            background-color: #007bff; /* Change the button color to blue */
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -106,13 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 4px;
         }
 
-        .form-group input[type="submit"]:hover {
-            background-color: #45a049;
+        .container .form-group input[type="submit"]:hover {
+            background-color: #0069d9; /* Change the button hover color to a darker blue */
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
+    <div class="container">
         <h1>Add Course</h1>
 
         <!-- Display any error messages -->
@@ -136,9 +143,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="course_name" name="course_name" value="<?php echo $course_name; ?>">
             </div>
             <div class="form-group">
-                <input type="submit" value="Add Course">
+                <input type="submit" value="Add Course" class="btn btn-primary"> <!-- Apply the primary button style -->
             </div>
         </form>
     </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
