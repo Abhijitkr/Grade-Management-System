@@ -89,7 +89,7 @@ $mysqli->close();
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             font-weight: bold;
             color: #007bff;
         }
@@ -103,8 +103,8 @@ $mysqli->close();
         }
 
         .dashboard-card .dashboard-link:hover {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #EEEEEE;
+            transform: scale(1.02); /* Add scale transform on hover */
         }
 
         .dashboard-card .dashboard-link:after {
@@ -157,6 +157,7 @@ $mysqli->close();
             font-size: 20px;
             margin-bottom: 0;
         }
+        
     </style>
 </head>
 <body>
@@ -213,7 +214,6 @@ $mysqli->close();
                     <!-- Add more student-specific options here -->
                 </ul>
             <?php } ?>
-
             <!-- Logout link -->
             <a class="logout-link" href="logout.php">Logout</a>
         </div>
