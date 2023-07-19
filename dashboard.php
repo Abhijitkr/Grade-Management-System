@@ -12,6 +12,36 @@ if (!isset($_SESSION['user_id'])) {
 // Get the user ID and role from the session
 $user_id = $_SESSION['user_id'];
 $role = $_SESSION['role'];
+
+// Include the db_connection.php file
+require_once 'db_connection.php';
+
+// Define variables to store the retrieved data
+$total_students = 0;
+$total_courses = 0;
+$instructor_courses = array();
+$student_courses = array();
+$student_grades = array();
+
+// Retrieve data based on the user's role
+if ($role === 'admin') {
+    // Get the total number of students
+    $stmt_total_students = $mysqli->prepare('SELECT COUNT(*) FROM students');
+    $stmt_total_students->execute();
+    $stmt_total_students->bind_result($total_students);
+    $stmt_total_students->fetch();
+    $stmt_total_students->close();
+
+    // Get the total number of courses
+    $stmt_total_courses = $mysqli->prepare('SELECT COUNT(*) FROM courses');
+    $stmt_total_courses->execute();
+    $stmt_total_courses->bind_result($total_courses);
+    $stmt_total_courses->fetch();
+    $stmt_total_courses->close();
+}
+
+// Close the database connection
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +118,9 @@ $role = $_SESSION['role'];
             border-bottom: 5px solid transparent;
             border-left: 5px solid currentColor;
         }
-
+        .list-unstyled{
+            margin-top: 10px;
+        }
         .logout-link {
             display: block;
             margin-top: 20px;
@@ -100,6 +132,23 @@ $role = $_SESSION['role'];
 
         .logout-link:hover {
             color: #000;
+        }
+        .total-card {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .total-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .total-card p {
+            font-size: 20px;
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -113,12 +162,27 @@ $role = $_SESSION['role'];
                 <div class="alert alert-primary" role="alert">
                     <h3>Admin Dashboard</h3>
                 </div>
+                <!-- Beautiful cards for displaying total students and total courses -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="total-card">
+                            <h3>Total Students</h3>
+                            <p><?php echo $total_students; ?></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="total-card">
+                            <h3>Total Courses</h3>
+                            <p><?php echo $total_courses; ?></p>
+                        </div>
+                    </div>
+                </div>
                 <!-- Display admin-specific options and functionalities -->
                 <ul class="list-unstyled">
                     <li><a class="dashboard-link add" href="add_student.php">Add Student</a></li>
-                    <li><a class="dashboard-link view" href="view_students.php">View Students</a></li>
+                    <li><a class="dashboard-link view" href="view_students.php">Manage Students</a></li>
                     <li><a class="dashboard-link add" href="add_course.php">Add Course</a></li>
-                    <li><a class="dashboard-link view" href="view_courses.php">View Courses</a></li>
+                    <li><a class="dashboard-link view" href="view_courses.php">Manage Courses</a></li>
                     <!-- Add more admin-specific options here -->
                 </ul>
             <?php } elseif ($role === 'instructor') { ?>
@@ -146,6 +210,7 @@ $role = $_SESSION['role'];
             <!-- Logout link -->
             <a class="logout-link" href="logout.php">Logout</a>
         </div>
+        
     </div>
 
     <!-- Include Bootstrap JS -->
@@ -154,4 +219,3 @@ $role = $_SESSION['role'];
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
