@@ -124,14 +124,21 @@ $mysqli->close();
         .logout-link {
             display: block;
             margin-top: 20px;
-            color: #6c757d;
+            padding: 10px 20px;
+            background-color: #dc3545; /* Red color */
+            color: #fff; /* White text color */
+            border-radius: 5px;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s; /* Add CSS transition for background color and transform */
         }
 
         .logout-link:hover {
-            color: #000;
+            background-color: #c82333; /* Darker shade of red on hover */
+            transform: scale(1.02); /* Add scale transform on hover */
+            text-decoration: none;
+            color: #fff;
         }
         .total-card {
             background-color: #007bff;
