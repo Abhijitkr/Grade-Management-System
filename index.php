@@ -118,6 +118,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
             </div>
+
+            <div>
+                <h4 style="text-align: center">Guest Logins</h4>
+                <button type="button" class="btn btn-primary btn-block" id="guestAdminLogin" style="background-color: #CCE5FF; color: black">Guest Admin Login</button>
+                <button type="button" class="btn btn-primary btn-block" id="guestInstructorLogin" style="background-color: #D4EDDA; color: black">Guest Instructor Login</button>
+                <button type="button" class="btn btn-primary btn-block" id="guestStudentLogin" style="background-color: #D1ECF1; color: black">Guest Student Login</button>
+            </div>
         </form>
     </div>
 
@@ -127,3 +134,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+<script>
+    // Function to handle guest admin login
+    document.getElementById('guestAdminLogin').addEventListener('click', function() {
+        // You can set predefined values for guest logins or customize this logic as needed
+        const guestAdminUsername = 'admin';
+        const guestAdminPassword = 'admin';
+
+        // Assign guest admin credentials to form fields
+        document.getElementById('username').value = guestAdminUsername;
+        document.getElementById('password').value = guestAdminPassword;
+
+        // Simulate form submission for guest admin login
+        document.querySelector('.login-form').submit();
+    });
+
+    // Function to handle guest instructor login
+    document.getElementById('guestInstructorLogin').addEventListener('click', function() {
+        // You can set predefined values for guest logins or customize this logic as needed
+        const guestInstructorUsername = 'instructor';
+        const guestInstructorPassword = 'instructor';
+
+        // Assign guest instructor credentials to form fields
+        document.getElementById('username').value = guestInstructorUsername;
+        document.getElementById('password').value = guestInstructorPassword;
+
+        // Simulate form submission for guest instructor login
+        document.querySelector('.login-form').submit();
+    });
+
+    // Function to handle guest student login
+    document.getElementById('guestStudentLogin').addEventListener('click', function() {
+        // You can set predefined values for guest logins or customize this logic as needed
+        const guestStudentUsername = 'student';
+        const guestStudentPassword = 'student';
+
+        // Assign guest student credentials to form fields
+        document.getElementById('username').value = guestStudentUsername;
+        document.getElementById('password').value = guestStudentPassword;
+
+        // Simulate form submission for guest student login
+        document.querySelector('.login-form').submit();
+    });
+</script>
